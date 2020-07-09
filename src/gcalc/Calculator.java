@@ -29,14 +29,15 @@ import javax.swing.JFrame;
 final class Calculator extends JFrame {
 
     /**
-     * Initializes calculator.
+     * Default constructor.
      */
     Calculator() {
         init();
     }
 
     /**
-     * Initialize settings.
+     * Adds {@link gcalc.CalculatorFrame CalculatorFrame}
+     *  and initializes application view.
      */
     private void init() {
         getContentPane().add(new CalculatorFrame());
@@ -48,7 +49,7 @@ final class Calculator extends JFrame {
     }
 
     /**
-     * Invokes utility.
+     * Adds utility to event queue to be run.
      *
      * @param args command-line arguments; unused here
      */

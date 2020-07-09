@@ -37,7 +37,7 @@ import javax.swing.JTextField;
 final class CalculatorFrame extends JPanel {
 
     /**
-     * Graphics handler.
+     * Custom panel that handles all graphing.
      */
     private final GraphingPanel bgp = new GraphingPanel();
 
@@ -83,14 +83,15 @@ final class CalculatorFrame extends JPanel {
     private JTextField inputXScale, inputYScale;
 
     /**
-     * Constructor points to initialization method.
+     * Default constructor.
      */
     CalculatorFrame() {
         init();
     }
 
     /**
-     * Settings for JFrame.
+     * Initializes graphing window, fields, and listeners.
+     * Sets initial panel values and packs everything.
      */
     private void init() {
         final UserHandler handler = new UserHandler();
@@ -140,11 +141,11 @@ final class CalculatorFrame extends JPanel {
     }
 
     /**
-     * Function to graph.
+     * Function that is being graphed.
      *
-     * @param x x-value
+     * @param x current x-value
      *
-     * @return result of function
+     * @return corresponding y-value
      */
     private static int func(final int x) {
         return (int) (Math.pow(x, 2) + x + 1);
@@ -184,7 +185,8 @@ final class CalculatorFrame extends JPanel {
         }
 
         /**
-         * Handle button press event.
+         * When button pressed, attempt to regen graph
+         * and draw with user values.
          *
          * @param ae action event sent by button
          */

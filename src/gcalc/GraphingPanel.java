@@ -60,7 +60,7 @@ final class GraphingPanel extends JPanel {
     }
 
     /**
-     * Set arrays of points.
+     * Set local arrays of points.
      *
      * @param xSpec specified x-vals
      * @param ySpec specified x-vals
