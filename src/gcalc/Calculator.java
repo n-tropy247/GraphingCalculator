@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Ryan Castelli
+ * Copyright (C) 2020 Ryan Castelli
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,9 +21,10 @@ import javax.swing.JFrame;
 
 /**
  * Executes graphing calculator.
+ *
  * @author NTropy
  * @since 10/16/18
- * @version 9.19.2019
+ * @version 7.9.2020
  */
 final class Calculator extends JFrame {
 
@@ -38,12 +39,11 @@ final class Calculator extends JFrame {
      * Initialize settings.
      */
     private void init() {
-        getContentPane().add(new GraphFrame());
+        getContentPane().add(new CalculatorFrame());
         setResizable(false);
         pack();
         setTitle("Graphing Calculator");
         setLocationByPlatform(true);
-        requestFocus();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -56,6 +56,7 @@ final class Calculator extends JFrame {
         EventQueue.invokeLater(() -> {
             JFrame ex = new Calculator();
             ex.setVisible(true);
+            ex.requestFocus();
         });
     }
 }

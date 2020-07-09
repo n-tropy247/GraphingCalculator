@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Ryan Castelli
+ * Copyright (C) 2020 Ryan Castelli
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,9 +27,9 @@ import javax.swing.JPanel;
  *
  * @author NTropy
  * @since 10/16/18
- * @version 9.19.2019
+ * @version 7.9.2020
  */
-final class BackgroundPanel extends JPanel {
+final class GraphingPanel extends JPanel {
 
     /**
      * Frame constraints.
@@ -44,7 +44,7 @@ final class BackgroundPanel extends JPanel {
     /**
      * Constructor, refers to parent class.
      */
-    BackgroundPanel() {
+    GraphingPanel() {
         super();
     }
 
@@ -61,6 +61,7 @@ final class BackgroundPanel extends JPanel {
 
     /**
      * Set arrays of points.
+     *
      * @param xSpec specified x-vals
      * @param ySpec specified x-vals
      */
@@ -71,6 +72,7 @@ final class BackgroundPanel extends JPanel {
 
     /**
      * Set constraints for drawing graph.
+     *
      * @param xs step distance on x-axis
      * @param ys step distance on y-axis
      * @param ac conversion factor for axes
