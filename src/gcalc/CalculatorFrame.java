@@ -32,7 +32,7 @@ import javax.swing.JTextField;
  *
  * @author NTropy
  * @since 10/16/18
- * @version 7.1.2020
+ * @version 11.19.2023
  */
 final class CalculatorFrame extends JPanel {
 
@@ -48,19 +48,12 @@ final class CalculatorFrame extends JPanel {
     private final int graphPts = 40;
 
     /**
-     * Length of user input box.
-     */
-    private final int usrInLen = 15;
-
-    /**
      * Graph constraints.
      */
-    private final int axisConv = 10, xStep = 4, yStep = 3, axisLen = 5;
+    private final int axisConv = 10;
 
-    /**
-     * Window constraints.
-     */
-    private final int winH = 900, winW = 1400, graphH = 700, graphW = 1400;
+    private final int graphH = 700;
+    private final int graphW = 1400;
 
     /**
      * Arrays for plot points.
@@ -71,11 +64,6 @@ final class CalculatorFrame extends JPanel {
      * Current scaling on graph.
      */
     private int xScale = 1, yScale = 1;
-
-    /**
-     * Button to submit user input and redraw.
-     */
-    private JButton redrawBtn;
 
     /**
      * User input fields.
@@ -97,16 +85,19 @@ final class CalculatorFrame extends JPanel {
         final UserHandler handler = new UserHandler();
         requestFocus();
 
+        int winH = 900;
+        int winW = 1400;
         setPreferredSize(new Dimension(winW, winH));
         setLayout(new BorderLayout());
 
         bgp.setPreferredSize(new Dimension(graphW, graphH));
         add(bgp, BorderLayout.PAGE_START);
 
-        redrawBtn = new JButton("Submit");
+        JButton redrawBtn = new JButton("Submit");
         redrawBtn.addActionListener(handler);
 
         //initialize user input fields
+        int usrInLen = 15;
         inputXScale = new JTextField("x-scale", usrInLen);
         inputXScale.addFocusListener(handler);
         inputYScale = new JTextField("y-scale", usrInLen);
@@ -125,6 +116,9 @@ final class CalculatorFrame extends JPanel {
 
         bgp.setWinConstraints(graphW, graphH);
         bgp.setArrays(x, y);
+        int xStep = 4;
+        int yStep = 3;
+        int axisLen = 5;
         bgp.setGraphConstraints(xStep, yStep, axisConv, axisLen, graphPts);
         bgp.repaint();
     }
@@ -135,7 +129,7 @@ final class CalculatorFrame extends JPanel {
     private void genGraph() {
         for (int j = 0; j < graphPts; j++) {
             x[j] = axisConv * xScale * j + graphW / 2 + axisConv
-                    - graphPts * xScale * axisConv / 2;
+                    - graphPts * xScale * axisConv / 2 - 10;
             y[j] = graphH / 2 - yScale * func(j - graphPts / 2);
         }
     }
@@ -148,7 +142,7 @@ final class CalculatorFrame extends JPanel {
      * @return corresponding y-value
      */
     private static int func(final int x) {
-        return (int) (Math.pow(x, 2) + x + 1);
+        return (int) (Math.pow(x, 2) - 40);
     }
 
     /**
@@ -196,7 +190,8 @@ final class CalculatorFrame extends JPanel {
                 CalculatorFrame.this.xScale = Integer.parseInt(
                         CalculatorFrame.this.inputXScale.getText());
             } catch (NumberFormatException nfe) {
-                System.err.println(nfe);
+                if (nfe.getCause() != null)
+                    System.err.println("NaN input");
                 CalculatorFrame.this.inputXScale.setText("NaN");
                 CalculatorFrame.this.xScale = 1;
             }
@@ -206,7 +201,8 @@ final class CalculatorFrame extends JPanel {
                 genGraph();
                 bgp.repaint();
             } catch (NumberFormatException nfe) {
-                System.err.println(nfe);
+                if (nfe.getCause() != null)
+                    System.err.println("NaN input");
                 CalculatorFrame.this.inputYScale.setText("NaN");
                 CalculatorFrame.this.yScale = 1;
             }

@@ -27,7 +27,7 @@ import javax.swing.JPanel;
  *
  * @author NTropy
  * @since 10/16/18
- * @version 7.9.2020
+ * @version 11.19.2023
  */
 final class GraphingPanel extends JPanel {
 
